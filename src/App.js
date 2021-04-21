@@ -8,6 +8,7 @@ function App() {
   const [num, setNum] = useState('')
   const [Switch, setSwitch]=useState(false)
   const [method, setMethod]=useState('')
+  const [result, setResult] = useState('')
 
   const btnHandle=(e)=>{
     const C=e.target.value
@@ -19,6 +20,7 @@ function App() {
     if(!Switch){
       setFirstNum(firstNum+C)
       setNum(num+C)
+      setResult('')
     }
     
   }
@@ -34,20 +36,20 @@ function App() {
     switch (method){
       
       case '+':
-        alert(parseInt(firstNum)+parseInt(secondNum));
+        setResult(parseInt(firstNum)+parseInt(secondNum));
         break;
         case '-':
-          alert(parseInt(firstNum)-parseInt(secondNum));
+          setResult(parseInt(firstNum)-parseInt(secondNum));
           break;
           case '*':
-            alert(parseInt(firstNum)*parseInt(secondNum));
+            setResult(parseInt(firstNum)*parseInt(secondNum));
             break;
             case '/':
-              alert(parseInt(firstNum)/parseInt(secondNum));
+              setResult(parseInt(firstNum)/parseInt(secondNum));
               break;
               
               default:
-                alert('onknown method');
+                setResult('onknown method');
                 
               }
               
@@ -64,13 +66,14 @@ function App() {
   
             return (
     <>
-      <div className="all">
+         <div className="calc">
+           <div className="output">
+             <h3 className='ans-1'>{num ? num : <br />}</h3>
+             <p className='ans-2'>{result}</p>
+           </div>
 
-        <div className="box">
-          <div className="input"><input type="text" value={num} readOnly/></div>
-            <div className="output">
-
-              <div className="row">
+           <div className="input">
+           <div className="row">
                 <button value='1'  onClick={btnHandle}>1</button>
                 <button value='2'  onClick={btnHandle}>2</button>
                 <button value='3'  onClick={btnHandle}>3</button>
@@ -92,16 +95,13 @@ function App() {
               </div>
 
               <div className="row">
-                <button onClick={btnHandle}>.</button>
+                <button >Ac</button>
                 <button value='0'  onClick={btnHandle}>0</button>
                 <button value='/'  onClick={Method}>//</button>
                 <button value='='  onClick={equal}>=</button>
               </div>
-              
-            </div>
-        </div>
-
-      </div>    
+           </div>
+         </div>
     </>
   )
 }
